@@ -50,12 +50,13 @@
       gap: 0.75rem 1.25rem;
       align-items: center;
       padding: 0.7rem 1.25rem;
-      background: var(--paper);
-      border-bottom: 1px solid var(--rule);
+      background: #1c100e;
+      color: #f6ebe3;
+      border-bottom: 1px solid #3a221c;
     }
 
     .mark {
-      color: var(--ink);
+      color: #f6ebe3;
       font-size: 1.05rem;
       letter-spacing: -0.02em;
       text-decoration: none;
@@ -68,7 +69,7 @@
     }
 
     nav a {
-      color: var(--muted);
+      color: #e7cfc4;
       font-family: "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
       font-size: 0.78rem;
       letter-spacing: 0.04em;
@@ -77,8 +78,8 @@
     }
 
     nav a[aria-current="true"] {
-      color: var(--rust);
-      box-shadow: inset 0 -1px 0 var(--rust);
+      color: #f0a090;
+      box-shadow: inset 0 -1px 0 #f0a090;
     }
 
     .sangre {
@@ -103,11 +104,11 @@
       font-size: 0.72rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: #e7cfc4;
       white-space: nowrap;
     }
 
-    body[data-estado="anemia"] .sangre-estado { color: var(--rust); }
+    body[data-estado="anemia"] .sangre-estado { color: #ffb1a3; }
 
     .meter {
       flex: 1;
@@ -248,112 +249,83 @@
     body[data-estado="anemia"] { background: #f7e0d4; }
     body[data-estado="volviendo"] { background: #f4e7d6; }
 
-    .falo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
-    }
+    .falo-svg { display: block; overflow: visible; }
+    .asta { fill: #e8b4a6; stroke: #9a4e46; stroke-width: 2; }
+    .huevo { fill: #d9a194; }
+    .huevo-der { fill: #c9897e; }
+    .vena { fill: none; stroke: #a85a66; stroke-width: 3.5; stroke-linecap: round; }
+    .corona { fill: none; stroke: #8d3c40; stroke-width: 2.5; }
+    .meato { fill: none; stroke: #6e2c32; stroke-width: 2.5; stroke-linecap: round; }
 
     .falo-eje {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      transform-box: fill-box;
       transform-origin: 50% 100%;
-      transform: rotate(calc(var(--sangre) * 0.85deg - 18deg));
+      transform: rotate(calc(var(--sangre) * 0.62deg - 8deg));
       transition: transform 0.7s ease;
     }
 
-    .falo-glande {
-      display: block;
-      width: 2.35rem;
-      height: 1.65rem;
-      background: #a33b38;
-      border-radius: 50% 50% 42% 42%;
-    }
-
-    .falo-cuerpo {
-      display: block;
-      width: 1.65rem;
-      height: calc(1.1rem + (100 - var(--sangre)) * 0.075rem);
-      background: linear-gradient(#d07a72, #8d3c32);
-      border-radius: 0.15rem;
-      transition: height 0.7s ease;
-    }
-
-    .falo-base {
-      display: flex;
-      gap: 0.15rem;
-      margin-top: 0.1rem;
-    }
-
-    .falo-base span {
-      width: 1.15rem;
-      height: 1.4rem;
-      background: #b85a52;
-      border-radius: 50%;
+    .tronco {
+      transform-box: fill-box;
+      transform-origin: 50% 100%;
+      transform: scaleY(calc(0.32 + (100 - var(--sangre)) * 0.0095));
+      transition: transform 0.7s ease;
     }
 
     .ereccion {
-      display: grid;
-      grid-template-columns: 8rem 1fr;
-      gap: 1rem;
-      align-items: end;
-      margin: 0.5rem 0 1.25rem;
-      padding: 0.8rem 0;
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 1rem 0 1.5rem;
+      padding: 1.4rem 1rem 1.1rem;
+      background: radial-gradient(circle at 50% 78%, #5a2a24 0%, #1a0e0c 68%);
+      color: #f6ebe3;
     }
 
-    .ereccion .falo { height: 9.5rem; }
+    .ereccion .falo-svg { width: 15rem; height: 23rem; }
 
-    #ereccion-leyenda { margin: 0; }
+    #ereccion-leyenda {
+      margin: 0.35rem 0 0;
+      color: #f0d2c8;
+      text-align: center;
+      font-size: 1.02rem;
+    }
 
     .coro {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      height: 6.5rem;
-      margin: 0.5rem 0 1rem;
+      height: 9rem;
+      margin: 0.25rem 0 1rem;
     }
 
-    .falo-coro .falo-eje { transform: none; }
-    .falo-coro .falo-glande { width: 1.35rem; height: 0.95rem; }
-    .falo-coro .falo-cuerpo {
-      width: 0.95rem;
-      height: 1rem;
-      animation: ereccion 2.6s ease-in-out infinite;
-    }
-    .falo-coro:nth-child(2) .falo-cuerpo { animation-delay: 0.25s; }
-    .falo-coro:nth-child(3) .falo-cuerpo { animation-delay: 0.5s; }
-    .falo-coro:nth-child(4) .falo-cuerpo { animation-delay: 0.75s; }
-    .falo-coro:nth-child(5) .falo-cuerpo { animation-delay: 1s; }
+    .coro .falo-svg { width: 3.4rem; height: 8.5rem; }
+    .coro .falo-eje { transform: none; }
+    .coro .tronco { animation: alzar 2.4s ease-in-out infinite; }
+    .coro .falo-svg:nth-child(2) .tronco { animation-delay: 0.22s; }
+    .coro .falo-svg:nth-child(3) .tronco { animation-delay: 0.44s; }
+    .coro .falo-svg:nth-child(4) .tronco { animation-delay: 0.66s; }
+    .coro .falo-svg:nth-child(5) .tronco { animation-delay: 0.88s; }
 
-    .falo-mini {
-      height: 2.4rem;
-      width: 1.1rem;
-    }
-
+    .falo-mini { width: 1.7rem; height: 2.8rem; }
     .falo-mini .falo-eje { transform: none; }
-    .falo-mini .falo-glande { width: 0.85rem; height: 0.55rem; }
-    .falo-mini .falo-cuerpo {
-      width: 0.58rem;
-      height: calc(0.25rem + (100 - var(--sangre)) * 0.016rem);
+
+    body[data-estado="anemia"] .ereccion {
+      background: radial-gradient(circle at 50% 78%, #7a3028 0%, #140a09 70%);
     }
 
-    body[data-estado="anemia"] .ereccion .falo-glande,
-    body[data-estado="anemia"] .ereccion .falo-cuerpo,
-    body[data-estado="anemia"] .falo-mini .falo-cuerpo {
-      animation: pulso 0.75s ease-in-out infinite;
+    body[data-estado="anemia"] .ereccion .tronco,
+    body[data-estado="anemia"] .falo-mini .tronco {
+      animation: pulso 0.7s ease-in-out infinite;
     }
 
-    @keyframes ereccion {
-      0%, 100% { height: 0.8rem; }
-      45%, 70% { height: 4.2rem; }
+    @keyframes alzar {
+      0%, 100% { transform: scaleY(0.38); }
+      45%, 70% { transform: scaleY(1.12); }
     }
 
     @keyframes pulso {
-      50% { transform: scaleX(1.12); }
+      0%, 100% { transform: scaleY(calc(0.32 + (100 - var(--sangre)) * 0.0095)); }
+      50% { transform: scaleY(calc(0.4 + (100 - var(--sangre)) * 0.0105)) scaleX(1.08); }
     }
 
     .stage { margin-top: 0.5rem; }
@@ -388,18 +360,18 @@
       nav { grid-column: 1 / -1; }
 
       .sangre { min-width: 9.5rem; }
+      .ereccion .falo-svg { width: 11rem; height: 17rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .meter-fill,
       #episode-photo,
-      .falo-cuerpo,
+      .tronco,
       .falo-eje { transition: none; }
-      .falo-coro .falo-cuerpo,
-      body[data-estado="anemia"] .ereccion .falo-glande,
-      body[data-estado="anemia"] .ereccion .falo-cuerpo,
-      body[data-estado="anemia"] .falo-mini .falo-cuerpo { animation: none; }
+      .coro .tronco,
+      body[data-estado="anemia"] .ereccion .tronco,
+      body[data-estado="anemia"] .falo-mini .tronco { animation: none; }
     }
 
     @media print {
@@ -425,7 +397,7 @@
         <span class="meter-fill"></span>
       </div>
       <span class="meter-num" id="meter-num">88</span>
-      <span class="falo falo-mini" aria-hidden="true"><span class="falo-eje"><span class="falo-glande"></span><span class="falo-cuerpo"></span></span></span>
+      <svg class="falo-svg falo-mini" viewBox="0 0 140 320" aria-hidden="true"><g class="falo-eje"><ellipse class="huevo" cx="46" cy="292" rx="26" ry="30"/><ellipse class="huevo huevo-der" cx="96" cy="296" rx="24" ry="28"/><g class="tronco"><path class="asta" d="M52 250C50 190 48 120 50 78c0-20-8-34 0-46 10-18 38-20 48 0 10 20 0 40-8 52-2 10-8 16-14 18l0 148c0 12-24 12-24 0z"/><path class="corona" d="M48 92c20 16 54 4 44-12"/><path class="vena" d="M64 232c2-62 4-112 6-132"/><path class="meato" d="M74 28v12"/></g></g></svg>
     </div>
   </header>
 
@@ -433,8 +405,8 @@
     <section id="inicio" data-sangre="88">
       <p class="kicker">Una historia doméstica</p>
       <h1>Demetrio</h1>
-      <p class="lede">Un chico con el síndrome del pene enorme. Padece de anemia con cada erección. A su perro le dicen Dobby, como el elfo de Harry Potter.</p>
-      <p class="hint">La barra de arriba es la sangre. Acompaña el relato y baja cuando llega el episodio.</p>
+      <p class="lede">Tiene el síndrome del pene enorme. Cada vez que se le para, el pene se le pone descomunal y le roba la sangre. Le da anemia. A su perro le dicen Dobby, como el elfo de Harry Potter.</p>
+      <p class="hint">Arriba van la sangre y el pene. Si uno crece, la otra se vacía.</p>
       <figure>
         <img data-foto="demetrio-mesa" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1400" height="1866" alt="Demetrio sentado a la mesa de madera, de perfil, con la mano en la mejilla. Detrás hay una botella grande de naranja.">
         <figcaption>En la mesa, midiendo si le alcanza la sangre.</figcaption>
@@ -444,40 +416,37 @@
     <section id="sindrome" data-sangre="34">
       <h2>El síndrome</h2>
       <p>Demetrio se sienta a la mesa de madera, con la polera color ladrillo y el reloj negro. Apoya el codo, se lleva la mano a la mejilla y mira hacia el costado. En la casa ya leen esa pausa: está calculando cuánta sangre le queda.</p>
-      <p>Vive con el síndrome del pene enorme. Cuando llega la erección, el cuerpo le pide tanta sangre que lo demás se queda corto. Le da anemia. Se le va el color, le pesa la cabeza y tiene que parar hasta que vuelve.</p>
+      <p>El pene se le pone enorme y duro. Se lleva la sangre de la cara, de las manos y de la cabeza. Queda anémico hasta que la erección afloja.</p>
       <div class="coro" aria-hidden="true">
-        <span class="falo falo-coro"><span class="falo-eje"><span class="falo-glande"></span><span class="falo-cuerpo"></span></span></span>
-        <span class="falo falo-coro"><span class="falo-eje"><span class="falo-glande"></span><span class="falo-cuerpo"></span></span></span>
-        <span class="falo falo-coro"><span class="falo-eje"><span class="falo-glande"></span><span class="falo-cuerpo"></span></span></span>
-        <span class="falo falo-coro"><span class="falo-eje"><span class="falo-glande"></span><span class="falo-cuerpo"></span></span></span>
-        <span class="falo falo-coro"><span class="falo-eje"><span class="falo-glande"></span><span class="falo-cuerpo"></span></span></span>
+        <svg class="falo-svg" viewBox="0 0 140 320"><g class="falo-eje"><ellipse class="huevo" cx="46" cy="292" rx="26" ry="30"/><ellipse class="huevo huevo-der" cx="96" cy="296" rx="24" ry="28"/><g class="tronco"><path class="asta" d="M52 250C50 190 48 120 50 78c0-20-8-34 0-46 10-18 38-20 48 0 10 20 0 40-8 52-2 10-8 16-14 18l0 148c0 12-24 12-24 0z"/><path class="corona" d="M48 92c20 16 54 4 44-12"/><path class="vena" d="M64 232c2-62 4-112 6-132"/><path class="meato" d="M74 28v12"/></g></g></svg>
+        <svg class="falo-svg" viewBox="0 0 140 320"><g class="falo-eje"><ellipse class="huevo" cx="46" cy="292" rx="26" ry="30"/><ellipse class="huevo huevo-der" cx="96" cy="296" rx="24" ry="28"/><g class="tronco"><path class="asta" d="M52 250C50 190 48 120 50 78c0-20-8-34 0-46 10-18 38-20 48 0 10 20 0 40-8 52-2 10-8 16-14 18l0 148c0 12-24 12-24 0z"/><path class="corona" d="M48 92c20 16 54 4 44-12"/><path class="vena" d="M64 232c2-62 4-112 6-132"/><path class="meato" d="M74 28v12"/></g></g></svg>
+        <svg class="falo-svg" viewBox="0 0 140 320"><g class="falo-eje"><ellipse class="huevo" cx="46" cy="292" rx="26" ry="30"/><ellipse class="huevo huevo-der" cx="96" cy="296" rx="24" ry="28"/><g class="tronco"><path class="asta" d="M52 250C50 190 48 120 50 78c0-20-8-34 0-46 10-18 38-20 48 0 10 20 0 40-8 52-2 10-8 16-14 18l0 148c0 12-24 12-24 0z"/><path class="corona" d="M48 92c20 16 54 4 44-12"/><path class="vena" d="M64 232c2-62 4-112 6-132"/><path class="meato" d="M74 28v12"/></g></g></svg>
+        <svg class="falo-svg" viewBox="0 0 140 320"><g class="falo-eje"><ellipse class="huevo" cx="46" cy="292" rx="26" ry="30"/><ellipse class="huevo huevo-der" cx="96" cy="296" rx="24" ry="28"/><g class="tronco"><path class="asta" d="M52 250C50 190 48 120 50 78c0-20-8-34 0-46 10-18 38-20 48 0 10 20 0 40-8 52-2 10-8 16-14 18l0 148c0 12-24 12-24 0z"/><path class="corona" d="M48 92c20 16 54 4 44-12"/><path class="vena" d="M64 232c2-62 4-112 6-132"/><path class="meato" d="M74 28v12"/></g></g></svg>
+        <svg class="falo-svg" viewBox="0 0 140 320"><g class="falo-eje"><ellipse class="huevo" cx="46" cy="292" rx="26" ry="30"/><ellipse class="huevo huevo-der" cx="96" cy="296" rx="24" ry="28"/><g class="tronco"><path class="asta" d="M52 250C50 190 48 120 50 78c0-20-8-34 0-46 10-18 38-20 48 0 10 20 0 40-8 52-2 10-8 16-14 18l0 148c0 12-24 12-24 0z"/><path class="corona" d="M48 92c20 16 54 4 44-12"/><path class="vena" d="M64 232c2-62 4-112 6-132"/><path class="meato" d="M74 28v12"/></g></g></svg>
       </div>
       <figure>
         <img data-foto="demetrio-brindis" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1400" height="1866" alt="Demetrio sostiene la copa de naranja y mira hacia arriba.">
-        <figcaption>Levanta la copa y mira arriba. Ahí empieza a faltarle la sangre.</figcaption>
+        <figcaption>Se le para. Levanta la copa y la sangre ya se está yendo al pene.</figcaption>
       </figure>
     </section>
 
     <section id="episodio" data-sangre="34">
       <h2>El episodio</h2>
-      <p>Se lee de corrido. El botón recorre el mismo trance: la sangre baja, el falo se yergue, el trago de naranja acompaña, y el color vuelve.</p>
+      <p>El pene y la sangre, en el mismo trance. Cuando se yergue, a él se le va el color.</p>
       <figure class="ereccion">
-        <div class="falo" role="img" aria-labelledby="ereccion-leyenda">
-          <span class="falo-eje"><span class="falo-glande"></span><span class="falo-cuerpo"></span></span>
-          <span class="falo-base" aria-hidden="true"><span></span><span></span></span>
-        </div>
-        <figcaption id="ereccion-leyenda">A medio camino. Parte de la sangre ya se fue.</figcaption>
+        <svg class="falo-svg" viewBox="0 0 140 320" role="img" aria-labelledby="ereccion-leyenda"><g class="falo-eje"><ellipse class="huevo" cx="46" cy="292" rx="26" ry="30"/><ellipse class="huevo huevo-der" cx="96" cy="296" rx="24" ry="28"/><g class="tronco"><path class="asta" d="M52 250C50 190 48 120 50 78c0-20-8-34 0-46 10-18 38-20 48 0 10 20 0 40-8 52-2 10-8 16-14 18l0 148c0 12-24 12-24 0z"/><path class="corona" d="M48 92c20 16 54 4 44-12"/><path class="vena" d="M64 232c2-62 4-112 6-132"/><path class="meato" d="M74 28v12"/></g></g></svg>
+        <figcaption id="ereccion-leyenda">A medio camino. El pene ya se llevó parte de la sangre.</figcaption>
       </figure>
       <figure class="player">
         <img id="episode-photo" data-foto="demetrio-copa-cerrada" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1400" height="1866" alt="Demetrio bebe naranja en una copa, con un ojo cerrado.">
         <figcaption id="episode-caption">Bebe naranja con un ojo cerrado. El trago acompaña hasta que vuelva el color.</figcaption>
       </figure>
       <ol class="beats" id="beats">
-        <li data-sangre="88" data-foto="demetrio-mesa" data-alt="Demetrio sentado a la mesa, con la mano en la mejilla.">Quieto en la mesa. Todavía le alcanza la sangre.</li>
-        <li data-sangre="18" data-foto="demetrio-brindis" data-alt="Demetrio sostiene la copa de naranja y mira hacia arriba.">Llega la erección. El síndrome se lleva la sangre y le da anemia.</li>
-        <li data-sangre="42" data-foto="demetrio-copa-cerrada" data-alt="Demetrio bebe naranja en una copa, con un ojo cerrado." aria-current="step">Bebe naranja con un ojo cerrado. El trago acompaña hasta que vuelva el color.</li>
-        <li data-sangre="70" data-foto="demetrio-hombro" data-alt="Demetrio con la mano apoyada en el hombro.">Apoya la mano en el hombro y espera a que los dedos se aflojen.</li>
-        <li data-sangre="92" data-foto="demetrio-trago" data-alt="Demetrio bebe de la copa, con los ojos abiertos.">Los ojos abiertos. El color volvió a la cara.</li>
+        <li data-sangre="88" data-foto="demetrio-mesa" data-alt="Demetrio sentado a la mesa, con la mano en la mejilla.">El pene en reposo. La sangre todavía le alcanza la cara.</li>
+        <li data-sangre="18" data-foto="demetrio-brindis" data-alt="Demetrio sostiene la copa de naranja y mira hacia arriba.">Se le para. El pene enorme se lleva la sangre y le da anemia.</li>
+        <li data-sangre="42" data-foto="demetrio-copa-cerrada" data-alt="Demetrio bebe naranja en una copa, con un ojo cerrado." aria-current="step">Sigue duro. Bebe naranja con un ojo cerrado.</li>
+        <li data-sangre="70" data-foto="demetrio-hombro" data-alt="Demetrio con la mano apoyada en el hombro.">El pene afloja. La mano en el hombro, esperando.</li>
+        <li data-sangre="92" data-foto="demetrio-trago" data-alt="Demetrio bebe de la copa, con los ojos abiertos.">El pene cedió. Los ojos abiertos y el color de vuelta.</li>
       </ol>
       <div class="controls">
         <button type="button" id="next-beat">Siguiente latido</button>
@@ -599,9 +568,9 @@
         num.textContent = String(n);
         estadoEl.textContent = etiqueta(estado);
         var leyenda = document.getElementById("ereccion-leyenda");
-        if (estado === "anemia") leyenda.textContent = "Erecto. El síndrome se llevó la sangre y le dio anemia.";
-        else if (estado === "volviendo") leyenda.textContent = "Va cediendo. La sangre empieza a volver.";
-        else leyenda.textContent = "En reposo. La sangre sigue en el resto del cuerpo.";
+        if (estado === "anemia") leyenda.textContent = "Duro y enorme. La sangre está en el pene, no en la cara.";
+        else if (estado === "volviendo") leyenda.textContent = "Afloja. La sangre vuelve al cuerpo.";
+        else leyenda.textContent = "En reposo. El pene espera y la sangre está en su sitio.";
       }
 
       function mostrarLatido(index) {
