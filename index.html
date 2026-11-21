@@ -244,6 +244,118 @@
     body[data-estado="anemia"] #episode-photo { filter: saturate(0.25) brightness(1.08); }
     body[data-estado="volviendo"] #episode-photo { filter: saturate(0.72); }
 
+    body { transition: background 0.6s ease; }
+    body[data-estado="anemia"] { background: #f7e0d4; }
+    body[data-estado="volviendo"] { background: #f4e7d6; }
+
+    .falo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .falo-eje {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform-origin: 50% 100%;
+      transform: rotate(calc(var(--sangre) * 0.85deg - 18deg));
+      transition: transform 0.7s ease;
+    }
+
+    .falo-glande {
+      display: block;
+      width: 2.35rem;
+      height: 1.65rem;
+      background: #a33b38;
+      border-radius: 50% 50% 42% 42%;
+    }
+
+    .falo-cuerpo {
+      display: block;
+      width: 1.65rem;
+      height: calc(1.1rem + (100 - var(--sangre)) * 0.075rem);
+      background: linear-gradient(#d07a72, #8d3c32);
+      border-radius: 0.15rem;
+      transition: height 0.7s ease;
+    }
+
+    .falo-base {
+      display: flex;
+      gap: 0.15rem;
+      margin-top: 0.1rem;
+    }
+
+    .falo-base span {
+      width: 1.15rem;
+      height: 1.4rem;
+      background: #b85a52;
+      border-radius: 50%;
+    }
+
+    .ereccion {
+      display: grid;
+      grid-template-columns: 8rem 1fr;
+      gap: 1rem;
+      align-items: end;
+      margin: 0.5rem 0 1.25rem;
+      padding: 0.8rem 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .ereccion .falo { height: 9.5rem; }
+
+    #ereccion-leyenda { margin: 0; }
+
+    .coro {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      height: 6.5rem;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .falo-coro .falo-eje { transform: none; }
+    .falo-coro .falo-glande { width: 1.35rem; height: 0.95rem; }
+    .falo-coro .falo-cuerpo {
+      width: 0.95rem;
+      height: 1rem;
+      animation: ereccion 2.6s ease-in-out infinite;
+    }
+    .falo-coro:nth-child(2) .falo-cuerpo { animation-delay: 0.25s; }
+    .falo-coro:nth-child(3) .falo-cuerpo { animation-delay: 0.5s; }
+    .falo-coro:nth-child(4) .falo-cuerpo { animation-delay: 0.75s; }
+    .falo-coro:nth-child(5) .falo-cuerpo { animation-delay: 1s; }
+
+    .falo-mini {
+      height: 2.4rem;
+      width: 1.1rem;
+    }
+
+    .falo-mini .falo-eje { transform: none; }
+    .falo-mini .falo-glande { width: 0.85rem; height: 0.55rem; }
+    .falo-mini .falo-cuerpo {
+      width: 0.58rem;
+      height: calc(0.25rem + (100 - var(--sangre)) * 0.016rem);
+    }
+
+    body[data-estado="anemia"] .ereccion .falo-glande,
+    body[data-estado="anemia"] .ereccion .falo-cuerpo,
+    body[data-estado="anemia"] .falo-mini .falo-cuerpo {
+      animation: pulso 0.75s ease-in-out infinite;
+    }
+
+    @keyframes ereccion {
+      0%, 100% { height: 0.8rem; }
+      45%, 70% { height: 4.2rem; }
+    }
+
+    @keyframes pulso {
+      50% { transform: scaleX(1.12); }
+    }
+
     .stage { margin-top: 0.5rem; }
 
     .counter {
@@ -281,11 +393,17 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .meter-fill,
-      #episode-photo { transition: none; }
+      #episode-photo,
+      .falo-cuerpo,
+      .falo-eje { transition: none; }
+      .falo-coro .falo-cuerpo,
+      body[data-estado="anemia"] .ereccion .falo-glande,
+      body[data-estado="anemia"] .ereccion .falo-cuerpo,
+      body[data-estado="anemia"] .falo-mini .falo-cuerpo { animation: none; }
     }
 
     @media print {
-      .bar, .controls, details { display: none; }
+      .bar, .controls, details, .coro, .falo-mini { display: none; }
       body, html { background: #fff; }
     }
   </style>
@@ -307,6 +425,7 @@
         <span class="meter-fill"></span>
       </div>
       <span class="meter-num" id="meter-num">88</span>
+      <span class="falo falo-mini" aria-hidden="true"><span class="falo-eje"><span class="falo-glande"></span><span class="falo-cuerpo"></span></span></span>
     </div>
   </header>
 
@@ -326,6 +445,13 @@
       <h2>El síndrome</h2>
       <p>Demetrio se sienta a la mesa de madera, con la polera color ladrillo y el reloj negro. Apoya el codo, se lleva la mano a la mejilla y mira hacia el costado. En la casa ya leen esa pausa: está calculando cuánta sangre le queda.</p>
       <p>Vive con el síndrome del pene enorme. Cuando llega la erección, el cuerpo le pide tanta sangre que lo demás se queda corto. Le da anemia. Se le va el color, le pesa la cabeza y tiene que parar hasta que vuelve.</p>
+      <div class="coro" aria-hidden="true">
+        <span class="falo falo-coro"><span class="falo-eje"><span class="falo-glande"></span><span class="falo-cuerpo"></span></span></span>
+        <span class="falo falo-coro"><span class="falo-eje"><span class="falo-glande"></span><span class="falo-cuerpo"></span></span></span>
+        <span class="falo falo-coro"><span class="falo-eje"><span class="falo-glande"></span><span class="falo-cuerpo"></span></span></span>
+        <span class="falo falo-coro"><span class="falo-eje"><span class="falo-glande"></span><span class="falo-cuerpo"></span></span></span>
+        <span class="falo falo-coro"><span class="falo-eje"><span class="falo-glande"></span><span class="falo-cuerpo"></span></span></span>
+      </div>
       <figure>
         <img data-foto="demetrio-brindis" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1400" height="1866" alt="Demetrio sostiene la copa de naranja y mira hacia arriba.">
         <figcaption>Levanta la copa y mira arriba. Ahí empieza a faltarle la sangre.</figcaption>
@@ -334,7 +460,14 @@
 
     <section id="episodio" data-sangre="34">
       <h2>El episodio</h2>
-      <p>Se lee de corrido. El botón recorre el mismo trance: la sangre baja, el trago de naranja acompaña, y el color vuelve.</p>
+      <p>Se lee de corrido. El botón recorre el mismo trance: la sangre baja, el falo se yergue, el trago de naranja acompaña, y el color vuelve.</p>
+      <figure class="ereccion">
+        <div class="falo" role="img" aria-labelledby="ereccion-leyenda">
+          <span class="falo-eje"><span class="falo-glande"></span><span class="falo-cuerpo"></span></span>
+          <span class="falo-base" aria-hidden="true"><span></span><span></span></span>
+        </div>
+        <figcaption id="ereccion-leyenda">A medio camino. Parte de la sangre ya se fue.</figcaption>
+      </figure>
       <figure class="player">
         <img id="episode-photo" data-foto="demetrio-copa-cerrada" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1400" height="1866" alt="Demetrio bebe naranja en una copa, con un ojo cerrado.">
         <figcaption id="episode-caption">Bebe naranja con un ojo cerrado. El trago acompaña hasta que vuelva el color.</figcaption>
@@ -465,6 +598,10 @@
         meter.setAttribute("aria-valuetext", "Sangre disponible, " + n + " por ciento, " + etiqueta(estado).toLowerCase());
         num.textContent = String(n);
         estadoEl.textContent = etiqueta(estado);
+        var leyenda = document.getElementById("ereccion-leyenda");
+        if (estado === "anemia") leyenda.textContent = "Erecto. El síndrome se llevó la sangre y le dio anemia.";
+        else if (estado === "volviendo") leyenda.textContent = "Va cediendo. La sangre empieza a volver.";
+        else leyenda.textContent = "En reposo. La sangre sigue en el resto del cuerpo.";
       }
 
       function mostrarLatido(index) {
