@@ -208,6 +208,8 @@
 
     .beats li[aria-current="step"] { border-left-color: var(--rust); }
 
+    .beats li { cursor: pointer; }
+
     .controls {
       display: flex;
       flex-wrap: wrap;
@@ -324,19 +326,23 @@
       <h2>El síndrome</h2>
       <p>Demetrio se sienta a la mesa de madera, con la polera color ladrillo y el reloj negro. Apoya el codo, se lleva la mano a la mejilla y mira hacia el costado. En la casa ya leen esa pausa: está calculando cuánta sangre le queda.</p>
       <p>Vive con el síndrome del pene enorme. Cuando llega la erección, el cuerpo le pide tanta sangre que lo demás se queda corto. Le da anemia. Se le va el color, le pesa la cabeza y tiene que parar hasta que vuelve.</p>
+      <figure>
+        <img data-foto="demetrio-brindis" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1400" height="1866" alt="Demetrio sostiene la copa de naranja y mira hacia arriba.">
+        <figcaption>Levanta la copa y mira arriba. Ahí empieza a faltarle la sangre.</figcaption>
+      </figure>
     </section>
 
     <section id="episodio" data-sangre="34">
       <h2>El episodio</h2>
       <p>Se lee de corrido. El botón recorre el mismo trance: la sangre baja, el trago de naranja acompaña, y el color vuelve.</p>
       <figure class="player">
-        <img id="episode-photo" data-foto="demetrio-mesa" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1400" height="1866" alt="Demetrio sentado a la mesa, con la mano en la mejilla.">
-        <figcaption id="episode-caption">Quieto en la mesa. Todavía le alcanza la sangre.</figcaption>
+        <img id="episode-photo" data-foto="demetrio-copa-cerrada" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1400" height="1866" alt="Demetrio bebe naranja en una copa, con un ojo cerrado.">
+        <figcaption id="episode-caption">Bebe naranja con un ojo cerrado. El trago acompaña hasta que vuelva el color.</figcaption>
       </figure>
       <ol class="beats" id="beats">
-        <li data-sangre="88" data-foto="demetrio-mesa" data-alt="Demetrio sentado a la mesa, con la mano en la mejilla." aria-current="step">Quieto en la mesa. Todavía le alcanza la sangre.</li>
+        <li data-sangre="88" data-foto="demetrio-mesa" data-alt="Demetrio sentado a la mesa, con la mano en la mejilla.">Quieto en la mesa. Todavía le alcanza la sangre.</li>
         <li data-sangre="18" data-foto="demetrio-brindis" data-alt="Demetrio sostiene la copa de naranja y mira hacia arriba.">Llega la erección. El síndrome se lleva la sangre y le da anemia.</li>
-        <li data-sangre="42" data-foto="demetrio-copa-cerrada" data-alt="Demetrio bebe naranja en una copa, con un ojo cerrado.">Bebe naranja con un ojo cerrado. El trago acompaña hasta que vuelva el color.</li>
+        <li data-sangre="42" data-foto="demetrio-copa-cerrada" data-alt="Demetrio bebe naranja en una copa, con un ojo cerrado." aria-current="step">Bebe naranja con un ojo cerrado. El trago acompaña hasta que vuelva el color.</li>
         <li data-sangre="70" data-foto="demetrio-hombro" data-alt="Demetrio con la mano apoyada en el hombro.">Apoya la mano en el hombro y espera a que los dedos se aflojen.</li>
         <li data-sangre="92" data-foto="demetrio-trago" data-alt="Demetrio bebe de la copa, con los ojos abiertos.">Los ojos abiertos. El color volvió a la cara.</li>
       </ol>
@@ -348,34 +354,23 @@
 
     <section id="mesa" data-sangre="64">
       <h2>La mesa</h2>
-      <p>Botella grande de naranja, copa de pie, madera. El ritual de la casa, foto por foto.</p>
-      <p class="counter" id="film-counter">1 / 5</p>
-      <div class="stage" id="film" tabindex="0" aria-roledescription="carrusel" aria-label="Fotos de la mesa">
-        <figure class="film-slide">
-          <img data-foto="demetrio-mesa" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1400" height="1866" alt="Demetrio en la mesa, pensando, con la botella de naranja detrás.">
-          <figcaption>Antes. La mano en la mejilla.</figcaption>
-        </figure>
-        <figure class="film-slide">
-          <img data-foto="demetrio-copa-cerrada" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1400" height="1866" alt="Demetrio bebe naranja con un ojo cerrado.">
-          <figcaption>Un ojo cerrado, a mitad del episodio.</figcaption>
-        </figure>
-        <figure class="film-slide">
-          <img data-foto="demetrio-trago" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1400" height="1866" alt="Demetrio bebe de la copa con los ojos abiertos.">
-          <figcaption>Otro trago, ya con los dos ojos abiertos.</figcaption>
-        </figure>
-        <figure class="film-slide">
-          <img data-foto="demetrio-brindis" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1400" height="1866" alt="Demetrio sostiene la copa de naranja apartada de la mesa.">
-          <figcaption>La copa, lejos. La espera, cerca.</figcaption>
-        </figure>
-        <figure class="film-slide">
-          <img data-foto="demetrio-hombro" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1400" height="1866" alt="Demetrio de perfil, con la mano en el hombro.">
-          <figcaption>La mano en el hombro, contando hasta que pasa.</figcaption>
-        </figure>
-      </div>
-      <div class="controls">
-        <button type="button" id="film-prev">Anterior</button>
-        <button type="button" id="film-next">Siguiente</button>
-      </div>
+      <p>Las otras cuatro de la misma mesa, una detrás de otra.</p>
+      <figure>
+        <img data-foto="demetrio-copa-cerrada" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1400" height="1866" alt="Demetrio bebe naranja con un ojo cerrado.">
+        <figcaption>Un ojo cerrado, a mitad del episodio.</figcaption>
+      </figure>
+      <figure>
+        <img data-foto="demetrio-trago" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1400" height="1866" alt="Demetrio bebe de la copa con los ojos abiertos.">
+        <figcaption>Otro trago, ya con los dos ojos abiertos.</figcaption>
+      </figure>
+      <figure>
+        <img data-foto="demetrio-brindis" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1400" height="1866" alt="Demetrio sostiene la copa de naranja apartada de la mesa.">
+        <figcaption>La copa, lejos. La espera, cerca.</figcaption>
+      </figure>
+      <figure>
+        <img data-foto="demetrio-hombro" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1400" height="1866" alt="Demetrio de perfil, con la mano en el hombro.">
+        <figcaption>La mano en el hombro, contando hasta que pasa.</figcaption>
+      </figure>
     </section>
 
     <section id="dobby" data-sangre="90">
@@ -447,11 +442,7 @@
       var beats = Array.prototype.slice.call(document.querySelectorAll("#beats li"));
       var links = Array.prototype.slice.call(document.querySelectorAll("nav a"));
       var sections = Array.prototype.slice.call(document.querySelectorAll("main section"));
-      var slides = Array.prototype.slice.call(document.querySelectorAll(".film-slide"));
-      var film = document.getElementById("film");
-      var counter = document.getElementById("film-counter");
-      var beatIndex = 0;
-      var slideIndex = 0;
+      var beatIndex = 2;
 
       function nombre(valor) {
         if (valor < 45) return "anemia";
@@ -489,13 +480,11 @@
         pintar(Number(beat.getAttribute("data-sangre")));
       }
 
-      function mostrarFoto(index) {
-        slideIndex = (index + slides.length) % slides.length;
-        slides.forEach(function (slide, i) {
-          slide.hidden = i !== slideIndex;
+      beats.forEach(function (item, i) {
+        item.addEventListener("click", function () {
+          mostrarLatido(i);
         });
-        counter.textContent = (slideIndex + 1) + " / " + slides.length;
-      }
+      });
 
       document.getElementById("next-beat").addEventListener("click", function () {
         mostrarLatido((beatIndex + 1) % beats.length);
@@ -503,25 +492,6 @@
 
       document.getElementById("reset-beat").addEventListener("click", function () {
         mostrarLatido(0);
-      });
-
-      document.getElementById("film-prev").addEventListener("click", function () {
-        mostrarFoto(slideIndex - 1);
-      });
-
-      document.getElementById("film-next").addEventListener("click", function () {
-        mostrarFoto(slideIndex + 1);
-      });
-
-      film.addEventListener("keydown", function (event) {
-        if (event.key === "ArrowRight") {
-          mostrarFoto(slideIndex + 1);
-          event.preventDefault();
-        }
-        if (event.key === "ArrowLeft") {
-          mostrarFoto(slideIndex - 1);
-          event.preventDefault();
-        }
       });
 
       var dobbyAsk = document.getElementById("dobby-ask");
@@ -552,8 +522,7 @@
 
       window.addEventListener("scroll", capituloVisible, { passive: true });
 
-      mostrarFoto(0);
-      mostrarLatido(0);
+      mostrarLatido(2);
       capituloVisible();
       }
     }());
