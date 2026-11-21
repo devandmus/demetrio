@@ -398,15 +398,42 @@
     <footer>Contada en la mesa de la casa.</footer>
   </main>
 
-  <script src="fotos/demetrio-brindis.js"></script>
-  <script src="fotos/demetrio-copa-cerrada.js"></script>
-  <script src="fotos/demetrio-hombro.js"></script>
-  <script src="fotos/demetrio-mesa.js"></script>
-  <script src="fotos/demetrio-trago.js"></script>
-  <script src="fotos/dobby-arriba.js"></script>
-  <script src="fotos/dobby-lado.js"></script>
   <script>
     (function () {
+      var partes = {
+        "demetrio-brindis": 4,
+        "demetrio-copa-cerrada": 4,
+        "demetrio-hombro": 4,
+        "demetrio-mesa": 4,
+        "demetrio-trago": 4,
+        "dobby-arriba": 3,
+        "dobby-lado": 3
+      };
+
+      function cargar(nombre) {
+        var cadena = Promise.resolve("");
+        for (var i = 0; i < partes[nombre]; i++) {
+          (function (indice) {
+            cadena = cadena.then(function (acumulado) {
+              return fetch("fotos/p/" + nombre + "-" + indice).then(function (respuesta) {
+                if (!respuesta.ok) throw new Error(nombre);
+                return respuesta.text();
+              }).then(function (texto) {
+                return acumulado + texto;
+              });
+            });
+          })(i);
+        }
+        return cadena.then(function (fuente) {
+          (0, eval)(fuente);
+        });
+      }
+
+      Object.keys(partes).reduce(function (cadena, nombre) {
+        return cadena.then(function () { return cargar(nombre); });
+      }, Promise.resolve()).then(iniciar);
+
+      function iniciar() {
       document.querySelectorAll("img[data-foto]").forEach(function (img) {
         var packed = window.FOTOS && window.FOTOS[img.getAttribute("data-foto")];
         if (packed) img.src = "data:image/jpeg;base64," + packed;
@@ -528,6 +555,7 @@
       mostrarFoto(0);
       mostrarLatido(0);
       capituloVisible();
+      }
     }());
   </script>
 </body>
